@@ -12,7 +12,7 @@ from sklearn.preprocessing import OneHotEncoder
 import pickle
 from matplotlib.pyplot import imshow
 from decouple import config
-
+import xgboost
 path = config('path_tumor')
 
 encoder = OneHotEncoder()
@@ -61,7 +61,7 @@ result = result.reshape(3009,2)
 
 x_train,x_test,y_train,y_test = train_test_split(data, result, test_size=0.2, shuffle=True, random_state=0)
 
-model = Sequential()
+model = xgboost()
 
 model.add(Conv2D(32, kernel_size=(2, 2), input_shape=(128, 128, 3), padding = 'Same'))
 model.add(Conv2D(32, kernel_size=(2, 2),  activation ='relu', padding = 'Same'))
